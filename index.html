@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#090d18" />
+  <meta name="description" content="Radar Night — mapa de eventos e movimento para motoristas." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Radar Night</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">RN</div>
+    <div class="brand-copy"><strong>RADAR NIGHT</strong><span>Eventos • Movimento • Rádio</span></div>
+    <button id="installBtn" class="install-btn hidden">Instalar</button>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">SEU RADAR DE TRABALHO</p><h1>Onde a noite<br><em>está acontecendo?</em></h1></div>
+      <button id="locateBtn" class="round-btn" aria-label="Minha localização" title="Minha localização">⌖</button>
+    </section>
+
+    <section class="map-wrap">
+      <div id="map" aria-label="Mapa de eventos"></div>
+      <div class="map-legend"><span class="live-dot"></span> Eventos de demonstração <span class="legend-sep">•</span> <span id="locationStatus">Localização desligada</span></div>
+    </section>
+
+    <section class="quick-actions">
+      <button class="action-card" id="radioTab"><span class="action-icon">◖))</span><span><b>Rádio</b><small>Entrar no canal</small></span><span class="arrow">›</span></button>
+      <button class="action-card" id="reportTab"><span class="action-icon">↗</span><span><b>Reportar movimento</b><small>Ajude os motoristas</small></span><span class="arrow">›</span></button>
+    </section>
+
+    <section class="section-head"><div><p class="eyebrow">NA REGIÃO</p><h2>Eventos no radar</h2></div><span class="demo-tag">DEMO</span></section>
+    <div id="eventList" class="event-list"></div>
+
+    <section id="radioPanel" class="panel hidden">
+      <div class="section-head"><div><p class="eyebrow">COMUNICAÇÃO</p><h2>Rádio Night</h2></div><button class="text-btn" id="closeRadio">Fechar</button></div>
+      <label class="field-label" for="channelSelect">Canal</label>
+      <select id="channelSelect"><option>Zona Leste</option><option>Zona Sul</option><option>ABC</option><option>Centro</option><option>Zona Oeste</option></select>
+      <div class="radio-status" id="radioStatus">Rádio em modo demonstração — sem conexão com outros motoristas.</div>
+      <button id="pttBtn" class="ptt" disabled><span>◖))</span><b>APERTE PARA FALAR</b><small>Transmissão entre usuários será ativada na próxima etapa</small></button>
+      <p class="fineprint">O botão de rádio está visualmente preparado, mas a transmissão ao vivo exige um servidor de sinalização e conexão de voz. Não use este protótipo como rádio operacional.</p>
+    <button class="secondary-btn" id="micTest">Testar microfone neste aparelho</button>
+  </section>
+
+  <section id="reportPanel" class="panel hidden">
+    <div class="section-head"><div><p class="eyebrow">INFORME AO RADAR</p><h2>Como está por aí?</h2></div><button class="text-btn" id="closeReport">Fechar</button></div>
+    <label class="field-label" for="eventSelect">Evento / local</label><select id="eventSelect"></select>
+    <div class="report-grid">
+      <button class="report-option" data-report="Movimento começando">🟡 <b>Movimento começando</b></button>
+      <button class="report-option" data-report="Saída acontecendo">🔴 <b>Saída acontecendo</b></button>
+      <button class="report-option" data-report="Região tranquila">🟢 <b>Região tranquila</b></button>
+    </div>
+    <div id="reportFeedback" class="feedback hidden"></div>
+    <p class="fineprint">Relatos deste protótipo ficam salvos somente neste aparelho. Não são enviados para outros motoristas.</p>
+  </section>
+
+  <footer><span>RADAR NIGHT <b>•</b> MVP 0.1</span><span>Feito para a rua</span></footer>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
